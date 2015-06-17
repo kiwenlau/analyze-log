@@ -12,13 +12,6 @@ def timeToSeconds(timeStr) :
 	#print timeStr[8:10], timeStr[11:13], timeStr[14:16], timeStr[17:29]
 	#print day, hour, minute, second
 	return day*86400+hour*3600+minute*60+second;
-	
-
-# calculate the interval between the begin time and end time
-def timeInterval(begin, end):
-	day=float(begin[9:10])
-	#hour=fload()
-	return interval;
 
 
 
@@ -43,23 +36,23 @@ while True:
 
 layerNumber=(len(timeString)-2)/5
 
-print layerNumber
+#print layerNumber
 
-		
-		
+# transfer timestamp to second				
 for k, v in enumerate(timeString):
 	#print k, v
 	timeSecond.append(timeToSeconds(timeString[k]))
 	#print '%.9f' % timeToSeconds(timeString[k])
 
-for k, v in enumerate(timeString):
-	print '%.9f' % timeSecond[k]
+#for k, v in enumerate(timeString):
+	#print '%.9f' % timeSecond[k]
 
 	
-#totalPushTime=timeInterval(timeString[0],timeString[len(timeString)-1])
+totalPushTime = timeSecond[len(timeString)-1]-timeSecond[0]
+print totalPushTime
 
-#print totalPushTime
-		
+checkTime = timeSecond[2*layerNumber] - timeSecond[0]
+print checkTime		
 		
 f.close()
 		
