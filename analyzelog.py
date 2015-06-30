@@ -1,4 +1,4 @@
-import analyzepush
+#!/usr/bin/python
 
 f=open("axle-base.txt", "r")
 
