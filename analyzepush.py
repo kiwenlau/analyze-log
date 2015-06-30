@@ -1,4 +1,6 @@
-f=open("push-log.txt", "r")
+#!/usr/bin/python
+
+f=open("push-logs.txt", "r")
 
 timeString = []
 timeSecond = []
@@ -13,46 +15,41 @@ def timeToSeconds(timeStr) :
 	#print day, hour, minute, second
 	return day*86400+hour*3600+minute*60+second;
 
+def calculatePushTime() :
+    # transfer timestamp to second
+    for k, v in enumerate(timeString):
+        #print k, v
+        timeSecond.append(timeToSeconds(timeString[k]))
+        #print '%.9f' % timeToSeconds(timeString[k])
+    layerNumber=(len(timeString)-2)/5
+    totalPushTime = timeSecond[len(timeString)-1]-timeSecond[0]
+    print totalPushTime
+    checkTime = timeSecond[2*layerNumber] - timeSecond[0]
+    print checkTime
+    return 
 
 
-while True:
-	line=f.readline()
-	if line:
-		# push begin
-		# check whether image layers exist in the registry 
-		if 'GET /v2/ HTTP/1.1' in line : 
-			timeString.append(line[:29])
-		# finish the check 
-	    	if (('GET /v1/images/' in line) and ('/json' in line)) : 
-			timeString.append(line[:29])
-		# push image layers
-	    	if (('args =' in line) and ('image_id' in line)) :
-			timeString.append(line[:29])	
-		# push finish
-	    	if (('PUT /v1/repositories/' in line) and ('images' in line)) :
-			timeString.append(line[:29])	
-	else:
-		break
 
-layerNumber=(len(timeString)-2)/5
+line=f.readline()
+while line :
+    while line != "\n" :
+        # push begin
+        # check whether image layers exist in the registry
+        if "GET /v2/ HTTP/1.1" in line :
+            timeString.append(line[:29])
+        # finish the check
+        if (('GET /v1/images/' in line) and ('/json' in line)) :
+            timeString.append(line[:29])
+        # push image layers
+        if (('args =' in line) and ('image_id' in line)) :
+            timeString.append(line[:29])
+        # push finish
+        if (('PUT /v1/repositories/' in line) and ('images' in line)) :
+            timeString.append(line[:29])
+        line=f.readline()
+    calculatePushTime()
+    line=f.readline
+    break
 
-#print layerNumber
-
-# transfer timestamp to second				
-for k, v in enumerate(timeString):
-	#print k, v
-	timeSecond.append(timeToSeconds(timeString[k]))
-	#print '%.9f' % timeToSeconds(timeString[k])
-
-#for k, v in enumerate(timeString):
-	#print '%.9f' % timeSecond[k]
-
-	
-totalPushTime = timeSecond[len(timeString)-1]-timeSecond[0]
-print totalPushTime
-
-checkTime = timeSecond[2*layerNumber] - timeSecond[0]
-print checkTime		
-		
 f.close()
 		
