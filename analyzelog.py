@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
+import sys
+
 # get all push and pull log
 # write all push and pull log into "push-pull-log.txt"
 
-f=open("axle-base.txt", "r")
+f=open(sys.argv[1], "r")
 
 line=f.readline()
 while line :
