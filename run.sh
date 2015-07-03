@@ -1,16 +1,16 @@
 #!/bin/bash
 
-loglist=(axle-base gocd-server)
+imagelist=(axle-base gocd-server)
 
-rm -rf output &> /dev/null
-mkdir output
+rm -rf output0 &> /dev/null
+mkdir output0
 
-for logname in ${loglist[*]};
+for imagename in ${imagelist[*]};
 do
     rm push-pull-log.txt push-logs.txt pull-logs.txt &> /dev/null
-	  ./analyzelog.py logs/$logname.txt
+	  ./getpushpull.py logs/$imagename.txt
     ./separatepushpull.py
-    ./analyzepush.py > output/$logname.txt
+    ./calculatepush.py > output0/$imagename.txt
 		#break
 done
 

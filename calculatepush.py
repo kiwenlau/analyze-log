@@ -16,6 +16,7 @@ def calculatePushTime(timeString = [], *args) :
     for k, v in enumerate(timeString):
         timeSecond.append(timeToSeconds(timeString[k]))
     layerNumber=(len(timeString)-2)/5
+    print "layer number : " , layerNumber
     totalPushTime = timeSecond[len(timeString)-1]-timeSecond[0]
     print totalPushTime
     checkTime = timeSecond[2*layerNumber] - timeSecond[0]
@@ -30,15 +31,16 @@ def calculatePushTime(timeString = [], *args) :
         layerTime.append(timeSecond[i+2]-timeSecond[i+1])
         checksumTime.append(timeSecond[i+3]-timeSecond[i+2])
         i = i + 3
-    print "jsonTime"
+    print "\njsonTime"
     for k, v in enumerate(jsonTime) :
         print v
-    print "layerTime"
+    print "\nlayerTime"
     for k, v in enumerate(layerTime) :
         print v
-    print "checksumTime"
+    print "\nchecksumTime"
     for k, v in enumerate(checksumTime) :
         print v
+    print "\n\n\n"
     return
 
 timeString = []
@@ -63,7 +65,7 @@ while line :
     calculatePushTime(timeString)
     timeString = []
     line=f.readline()
-    break
+#break
 
 f.close()
 		
