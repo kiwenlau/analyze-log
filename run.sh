@@ -1,6 +1,6 @@
 #!/bin/bash
 
-imagelist=(axle-base gocd-server)
+imagelist=(axle-base sultans-bin haproxy cb-shell dnsutils node-metrics container-metrics ruby-base ipsec multilevel drupal jruby openjdk mono glassfish jenkins-slave quickstart-python exhibitor ubuntu-perl swagger-editor serf dnsmasq gocd-base gocd-agent drill ubuntu-perl-dev devmachine buildpack-runner gcc buildstep gocd-server)
 
 rm -rf output0 output1&> /dev/null
 mkdir output0 output1

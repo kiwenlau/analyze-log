@@ -60,36 +60,7 @@ averageCheckTime = averageTime(checkTime, trim)
 print averageCheckTime
 
 
-# calculate the average time for transforing the json file for each layers
-jsonMatrix = numpy.zeros((6, layerNumber))
-
-reserved = [x for x in range(10) if x not in trim ]
-#print reserved
-
-j=0
-for i in reserved :
-    jsonMatrix[j] = lines[(4+i*index) : (4+i*index+layerNumber)]
-    #print jsonMatrix[j]
-    j = j+1
-
-#print "\n\n\n"
-
-jsonMatrix2=numpy.transpose(jsonMatrix)
-#print jsonMatrix2
-
-averageJsonTime = []
-
-for i in range(layerNumber) :
-    averageJson = reduce(lambda x, y: x + y, jsonMatrix2[i]) / 6
-    averageJsonTime.append(averageJson)
-
-
-print "\njsontime:"
-for x in averageJsonTime :
-    print x
-
-
-# calculate the average time for transforing json, layer and checksum of all layers
+# calculate the average time for transforing json, layer and checksum of each layers
 def averageLayerTime(offset) :
     timeMatrix = numpy.zeros((6, layerNumber))
     reserved = [ x for x in range(10) if x not in trim ]
@@ -107,8 +78,11 @@ def averageLayerTime(offset) :
     for x in averageTime:
         print x
 
+# calculate the average time for transfering "json" of each layer
 averageLayerTime(4)
+# calculate the average time for transfering "layer" of each layer
 averageLayerTime(6+layerNumber)
+# calculate the average time for transfering "checksum" of each layer
 averageLayerTime(8+layerNumber*2)       
     
 
