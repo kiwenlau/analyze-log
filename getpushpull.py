@@ -4,6 +4,7 @@ import sys
 
 # get all push and pull log
 # write all push and pull log into "push-pull-log.txt"
+# remove all unrelated logs
 
 f=open(sys.argv[1], "r")
 

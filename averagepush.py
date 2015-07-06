@@ -17,6 +17,8 @@ index = 13+3*layerNumber
 lines = f.readlines()
 f.close()
 
+print "layer number : " , layerNumber
+
 
 totalTime = []
 checkTime = []

@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# calculate the time of all steps for push
+# Includ total push time, check time and the time for transfering "json", "layer" and "checksum"
+
 f=open("push-logs.txt", "r")
 
 #transfer time string to seconds
