@@ -22,7 +22,7 @@ for file in files :
     checkTime.append(lines[1])
     jsonTime = jsonTime + lines[ 4 : ( 4 + layerNumber ) ]
     layerTime = layerTime + lines[ ( 6 + layerNumber ) : ( 6 + layerNumber*2 ) ]
-    checkTime = checkTime + lines[ ( 8 + layerNumber*2 ) : ( 8 + layerNumber*3 ) ]
+    checksumTime = checksumTime + lines[ ( 8 + layerNumber*2 ) : ( 8 + layerNumber*3 ) ]
     f.close()
     
 def writeListToFile(listname, filename) :
@@ -38,10 +38,10 @@ if os.path.exists("output2"):
 os.mkdir("output2")
 
 writeListToFile(totalTime, "output2/totalTime.txt")
-        
-    
-        
-
+writeListToFile(checkTime, "output2/checkTime.txt")      
+writeListToFile(jsonTime, "output2/jsonTime.txt")    
+writeListToFile(layerTime, "output2/layerTime.txt")        
+writeListToFile(checksumTime, "output2/checksumTime.txt")
 
 
 
