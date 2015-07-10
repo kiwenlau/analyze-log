@@ -1,5 +1,12 @@
 #!/usr/bin/python
 
+# merge the time of each push step of all images into corresponding files
+# merge all total push time into "totalTime.txt"
+# merge all check time into "checkTime.txt"
+# merge all json transfer time into "jsonTime.txt"
+# merge all layer transfer time into "layerTime.txt"
+# merge all checksum transfer time into "checksumTime.txt"
+
 import os
 import shutil
 

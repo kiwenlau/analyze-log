@@ -23,3 +23,7 @@ for imagename in ${imagelist[*]};
 do
     ./averagepush.py output0/$imagename.txt > output1/$imagename.txt
 done
+
+
+# merge the time of each push step of all images into corresponding files
+./mergepush.py
